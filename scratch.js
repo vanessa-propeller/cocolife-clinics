@@ -74,7 +74,7 @@ function App() {
         position="sticky"
         elevation={0}
         sx={{
-          backgroundColor: "#0D1117",
+          backgroundColor: "white",
           color: "black",
           paddingTop: "4em",
           paddingBottom: "1em",
@@ -86,17 +86,10 @@ function App() {
             align="center"
             fontFamily="Nunito Sans"
             fontWeight="medium"
-            color="white"
           >
             Cocolife Accredited Clinics
           </Typography>
-          <Typography
-            variant="h6"
-            align="center"
-            fontFamily="Nunito Sans"
-            color="white"
-            fontWeight="light"
-          >
+          <Typography variant="h6" align="center" fontFamily="Nunito Sans">
             As of June 2024
           </Typography>
         </Grid>
@@ -110,41 +103,20 @@ function App() {
             // margin="normal"
             defaultValue=""
             onChange={(e) => setSearch(e.target.value)}
-            inputProps={{ sx: { fontFamily: "Nunito Sans", color: "white" } }}
-            InputLabelProps={{
-              sx: {
-                fontFamily: "Nunito Sans",
-                borderWidth: "5px",
-                color: "#f5f5f5",
-              },
-            }}
-            sx={{
-              "& .MuiOutlinedInput-root": {
-                // color: "#000",
-                // Class for the border around the input field
-                "& .MuiOutlinedInput-notchedOutline": {
-                  // borderColor: "#f5f5f5",
-                  // borderWidth: "2px",
-                },
-              },
-            }}
+            inputProps={{ sx: { fontFamily: "Nunito Sans" } }}
+            InputLabelProps={{ sx: { fontFamily: "Nunito Sans" } }}
           />
         </Grid>
       </AppBar>
       {/* TABLE */}
       <Grid item sx={{ overflow: "hidden" }}>
-        <TableContainer component={Paper} sx={{ backgroundColor: "#0D1117" }}>
+        <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table" stickyHeader>
             <TableHead>
               <TableRow>
                 {tableHeaders.map((header) => (
                   <TableCell
-                    sx={{
-                      fontWeight: "bold",
-                      fontFamily: "Nunito Sans",
-                      color: "#4078c0",
-                      backgroundColor: "#0D1117",
-                    }}
+                    sx={{ fontWeight: "bold", fontFamily: "Nunito Sans" }}
                   >
                     {header}
                   </TableCell>
@@ -188,11 +160,7 @@ function App() {
                       <TableCell
                         component="th"
                         scope="row"
-                        sx={{
-                          fontFamily: "Nunito Sans",
-                          color: "white",
-                          fontWeight: "light",
-                        }}
+                        sx={{ fontFamily: "Nunito Sans" }}
                       >
                         {item}
                       </TableCell>
