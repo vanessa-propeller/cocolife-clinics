@@ -31,9 +31,10 @@ const useStyles = makeStyles((theme) => ({
     padding: "2vh 0vh",
   },
   card: {
-    padding: "2em",
-    margin: "1em 0em",
-    width: "36vw",
+    // padding: "2em",
+    // margin: "1em 0em",
+    // width: "36vw",
+    // width: "100%",
     // height: "28vh",
   },
 
@@ -49,7 +50,11 @@ function App() {
   console.log(search);
 
   return (
-    <Grid className={classes.mainContainer}>
+    <Grid
+      className={classes.mainContainer}
+      alignItems="center"
+      justifyContent="center"
+    >
       {/* HEADERS */}
       <Grid item>
         <Typography
@@ -93,7 +98,7 @@ function App() {
         item
         container
         justifyContent="space-between"
-        columns={2}
+        spacing={8}
         className={classes.cardsContainer}
       >
         {cocolifeClinics
@@ -107,80 +112,84 @@ function App() {
                   row.city.toLowerCase().includes(search.toLowerCase());
           })
           .map((row) => (
-            <Paper className={classes.card}>
-              <Grid container direction="column" justifyContent="flex-end">
-                <Grid item>
-                  <Typography
-                    variant="body1"
-                    fontFamily="Nunito Sans"
-                    sx={{ marginBottom: "8px" }}
-                  >
-                    <span className={classes.keys}>Provider Name: </span>
-                    {row.providerName}
-                  </Typography>
+            <Grid item xs={12} md={6} className={classes.card}>
+              {/* <Paper className={classes.card}> */}
+              <Paper sx={{ height: "100%", padding: "18px 24px" }}>
+                <Grid container direction="column" justifyContent="flex-end">
+                  <Grid item>
+                    <Typography
+                      variant="body1"
+                      fontFamily="Nunito Sans"
+                      sx={{ marginBottom: "8px" }}
+                    >
+                      <span className={classes.keys}>Provider Name: </span>
+                      {row.providerName}
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography
+                      variant="body1"
+                      fontFamily="Nunito Sans"
+                      sx={{ marginBottom: "8px" }}
+                    >
+                      <span className={classes.keys}>Contact Info: </span>
+                      {row.contactInfo}
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography
+                      variant="body1"
+                      fontFamily="Nunito Sans"
+                      sx={{ marginBottom: "8px" }}
+                    >
+                      <span className={classes.keys}>Address: </span>
+                      {row.address}
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography
+                      variant="body1"
+                      fontFamily="Nunito Sans"
+                      sx={{ marginBottom: "8px" }}
+                    >
+                      <span className={classes.keys}>Region: </span>
+                      {row.region}
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography
+                      variant="body1"
+                      fontFamily="Nunito Sans"
+                      sx={{ marginBottom: "8px" }}
+                    >
+                      <span className={classes.keys}>Province: </span>
+                      {row.province}
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography
+                      variant="body1"
+                      fontFamily="Nunito Sans"
+                      sx={{ marginBottom: "8px" }}
+                    >
+                      <span className={classes.keys}>City: </span>
+                      {row.city}
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography
+                      variant="body1"
+                      fontFamily="Nunito Sans"
+                      sx={{ marginBottom: "8px" }}
+                    >
+                      <span className={classes.keys}>Provider Code: </span>
+                      {row.providerCode}
+                    </Typography>
+                  </Grid>
                 </Grid>
-                <Grid item>
-                  <Typography
-                    variant="body1"
-                    fontFamily="Nunito Sans"
-                    sx={{ marginBottom: "8px" }}
-                  >
-                    <span className={classes.keys}>Contact Info: </span>
-                    {row.contactInfo}
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <Typography
-                    variant="body1"
-                    fontFamily="Nunito Sans"
-                    sx={{ marginBottom: "8px" }}
-                  >
-                    <span className={classes.keys}>Address: </span>
-                    {row.address}
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <Typography
-                    variant="body1"
-                    fontFamily="Nunito Sans"
-                    sx={{ marginBottom: "8px" }}
-                  >
-                    <span className={classes.keys}>Region: </span>
-                    {row.region}
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <Typography
-                    variant="body1"
-                    fontFamily="Nunito Sans"
-                    sx={{ marginBottom: "8px" }}
-                  >
-                    <span className={classes.keys}>Province: </span>
-                    {row.province}
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <Typography
-                    variant="body1"
-                    fontFamily="Nunito Sans"
-                    sx={{ marginBottom: "8px" }}
-                  >
-                    <span className={classes.keys}>City: </span>
-                    {row.city}
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <Typography
-                    variant="body1"
-                    fontFamily="Nunito Sans"
-                    sx={{ marginBottom: "8px" }}
-                  >
-                    <span className={classes.keys}>Provider Code: </span>
-                    {row.providerCode}
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Paper>
+                {/* </Paper> */}
+              </Paper>
+            </Grid>
           ))}
       </Grid>
     </Grid>
