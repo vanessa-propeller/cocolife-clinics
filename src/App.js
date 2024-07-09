@@ -73,6 +73,15 @@ function App() {
         >
           As of June 2024
         </Typography>
+        <Typography
+          variant="h6"
+          align="center"
+          fontFamily="Nunito Sans"
+          fontWeight="light"
+          fontSize="14px"
+        >
+          Source: https://www.cocolife.com/healthcare-providers/
+        </Typography>
       </Grid>
 
       {/* SEARCH FIELD */}
