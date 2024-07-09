@@ -20,14 +20,24 @@ import { cocolifeClinics } from "./data/cocolife-clinics-2024-06";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
-    padding: "0vh 8vw",
+    padding: "4vh 8vw",
   },
 
   textfield: {
     paddingTop: "2em",
   },
 
-  tableHeaders: {
+  cardsContainer: {
+    padding: "2vh 0vh",
+  },
+  card: {
+    padding: "2em",
+    margin: "1em 0em",
+    width: "36vw",
+    // height: "28vh",
+  },
+
+  keys: {
     fontWeight: "bold",
   },
 }));
@@ -38,179 +48,140 @@ function App() {
   const [search, setSearch] = useState("");
   console.log(search);
 
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
-
-  const tableHeaders = [
-    "Provider Name",
-    "Contact Information",
-    "Address",
-    "Region",
-    "Province",
-    "City",
-    "Provider Code",
-  ];
-
   return (
-    <Grid
-      container
-      className={classes.mainContainer}
-      alignItems="center"
-      justifyContent="center"
-      rowSpacing={3}
-      columns={1}
-    >
-      {/* HEADER */}
-      <AppBar
-        position="sticky"
-        elevation={0}
-        sx={{
-          backgroundColor: "#0D1117",
-          color: "black",
-          paddingTop: "4em",
-          paddingBottom: "1em",
-        }}
-      >
-        <Grid item>
-          <Typography
-            variant="h3"
-            align="center"
-            fontFamily="Nunito Sans"
-            fontWeight="medium"
-            color="white"
-          >
-            Cocolife Accredited Clinics
-          </Typography>
-          <Typography
-            variant="h6"
-            align="center"
-            fontFamily="Nunito Sans"
-            color="white"
-            fontWeight="light"
-          >
-            As of June 2024
-          </Typography>
-        </Grid>
-        {/* SEARCH FIELD */}
-        <Grid item className={classes.textfield} xs={12}>
-          <TextField
-            id="outlined-basic"
-            label="Search"
-            variant="outlined"
-            fullWidth
-            // margin="normal"
-            defaultValue=""
-            onChange={(e) => setSearch(e.target.value)}
-            inputProps={{ sx: { fontFamily: "Nunito Sans", color: "white" } }}
-            InputLabelProps={{
-              sx: {
-                fontFamily: "Nunito Sans",
-                borderWidth: "5px",
-                color: "#f5f5f5",
-              },
-            }}
-            sx={{
-              "& .MuiOutlinedInput-root": {
-                // color: "#000",
-                // Class for the border around the input field
-                "& .MuiOutlinedInput-notchedOutline": {
-                  // borderColor: "#f5f5f5",
-                  // borderWidth: "2px",
-                },
-              },
-            }}
-          />
-        </Grid>
-      </AppBar>
-      {/* TABLE */}
-      <Grid item sx={{ overflow: "hidden" }}>
-        <TableContainer component={Paper} sx={{ backgroundColor: "#0D1117" }}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table" stickyHeader>
-            <TableHead>
-              <TableRow>
-                {tableHeaders.map((header) => (
-                  <TableCell
-                    sx={{
-                      fontWeight: "bold",
-                      fontFamily: "Nunito Sans",
-                      color: "#4078c0",
-                      backgroundColor: "#0D1117",
-                    }}
-                  >
-                    {header}
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {cocolifeClinics
-                .filter((row) => {
-                  return search.toLowerCase() === ""
-                    ? row
-                    : row.providerName
-                        .toLowerCase()
-                        .includes(search.toLowerCase()) ||
-                        row.address
-                          .toLowerCase()
-                          .includes(search.toLowerCase()) ||
-                        row.region
-                          .toLowerCase()
-                          .includes(search.toLowerCase()) ||
-                        row.province
-                          .toLowerCase()
-                          .includes(search.toLowerCase()) ||
-                        row.city.toLowerCase().includes(search.toLowerCase());
-                })
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row) => (
-                  <TableRow
-                    key={row.id}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    {[
-                      row.providerName,
-                      row.contactInfo,
-                      row.address,
-                      row.region,
-                      row.province,
-                      row.city,
-                      row.providerName,
-                    ].map((item) => (
-                      <TableCell
-                        component="th"
-                        scope="row"
-                        sx={{
-                          fontFamily: "Nunito Sans",
-                          color: "white",
-                          fontWeight: "light",
-                        }}
-                      >
-                        {item}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 100]}
-          component="div"
-          count={cocolifeClinics.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
+    <Grid className={classes.mainContainer}>
+      {/* HEADERS */}
+      <Grid item>
+        <Typography
+          variant="h3"
+          align="center"
+          fontFamily="Nunito Sans"
+          fontWeight="medium"
+        >
+          Cocolife Accredited Clinics
+        </Typography>
+        <Typography
+          variant="h6"
+          align="center"
+          fontFamily="Nunito Sans"
+          fontWeight="light"
+        >
+          As of June 2024
+        </Typography>
+      </Grid>
+
+      {/* SEARCH FIELD */}
+      <Grid item className={classes.textfield} xs={12}>
+        <TextField
+          id="outlined-basic"
+          label="Search"
+          variant="outlined"
+          fullWidth
+          // margin="normal"
+          defaultValue=""
+          onChange={(e) => setSearch(e.target.value)}
+          inputProps={{ sx: { fontFamily: "Nunito Sans" } }}
+          InputLabelProps={{
+            sx: {
+              fontFamily: "Nunito Sans",
+            },
+          }}
         />
+      </Grid>
+
+      <Grid
+        item
+        container
+        justifyContent="space-between"
+        columns={2}
+        className={classes.cardsContainer}
+      >
+        {cocolifeClinics
+          .filter((row) => {
+            return search.toLowerCase() === ""
+              ? row
+              : row.providerName.toLowerCase().includes(search.toLowerCase()) ||
+                  row.address.toLowerCase().includes(search.toLowerCase()) ||
+                  row.region.toLowerCase().includes(search.toLowerCase()) ||
+                  row.province.toLowerCase().includes(search.toLowerCase()) ||
+                  row.city.toLowerCase().includes(search.toLowerCase());
+          })
+          .map((row) => (
+            <Paper className={classes.card}>
+              <Grid container direction="column" justifyContent="flex-end">
+                <Grid item>
+                  <Typography
+                    variant="body1"
+                    fontFamily="Nunito Sans"
+                    sx={{ marginBottom: "8px" }}
+                  >
+                    <span className={classes.keys}>Provider Name: </span>
+                    {row.providerName}
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Typography
+                    variant="body1"
+                    fontFamily="Nunito Sans"
+                    sx={{ marginBottom: "8px" }}
+                  >
+                    <span className={classes.keys}>Contact Info: </span>
+                    {row.contactInfo}
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Typography
+                    variant="body1"
+                    fontFamily="Nunito Sans"
+                    sx={{ marginBottom: "8px" }}
+                  >
+                    <span className={classes.keys}>Address: </span>
+                    {row.address}
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Typography
+                    variant="body1"
+                    fontFamily="Nunito Sans"
+                    sx={{ marginBottom: "8px" }}
+                  >
+                    <span className={classes.keys}>Region: </span>
+                    {row.region}
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Typography
+                    variant="body1"
+                    fontFamily="Nunito Sans"
+                    sx={{ marginBottom: "8px" }}
+                  >
+                    <span className={classes.keys}>Province: </span>
+                    {row.province}
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Typography
+                    variant="body1"
+                    fontFamily="Nunito Sans"
+                    sx={{ marginBottom: "8px" }}
+                  >
+                    <span className={classes.keys}>City: </span>
+                    {row.city}
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Typography
+                    variant="body1"
+                    fontFamily="Nunito Sans"
+                    sx={{ marginBottom: "8px" }}
+                  >
+                    <span className={classes.keys}>Provider Code: </span>
+                    {row.providerCode}
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Paper>
+          ))}
       </Grid>
     </Grid>
   );
