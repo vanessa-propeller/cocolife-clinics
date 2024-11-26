@@ -1,14 +1,37 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Nunito Sans",
-    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /* background-color: #0d1117; */
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Nunito Sans",
+        "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+        "Droid Sans", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* background-color: #0d1117; */
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
+}
+
+.leaflet-container {
+    height: 60vh;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.leaflet-popup-content-wrapper {
+    background: #2c3e50;
+    color: #fff;
+    font-size: 12px;
+    line-height: 24px;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Nunito Sans",
+        "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+        "Droid Sans", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* background-color: #0d1117; */
+}
+
+.p {
+    font-weight: bold;
 }
